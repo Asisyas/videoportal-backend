@@ -1,0 +1,13 @@
+# Production environment override
+services:
+  php:
+    build:
+      context: .
+      target: php-prod
+    env_file:
+      - .env
+      - .env.prod
+    environment:
+      # See https://xdebug.org/docs/all_settings#mode
+      XDEBUG_MODE: "off"
+      APP_ENV: "prod"

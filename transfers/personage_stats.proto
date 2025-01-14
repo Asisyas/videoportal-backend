@@ -1,0 +1,11 @@
+syntax = "proto3";
+package transfer.personage;
+message StatsTransfer {
+  int32 strength = 1;
+  int32 agility = 2;
+  int32 intuition = 3;
+  int32 endurance = 4;
+  int32 intelligence = 5;
+  int32 wisdom = 6;
+  int32 spirituality = 7;
+}

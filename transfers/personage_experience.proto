@@ -1,0 +1,6 @@
+syntax = "proto3";
+package transfer.personage;
+
+message ExperienceTransfer {
+  int32 experience = 1;
+}

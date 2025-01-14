@@ -1,0 +1,15 @@
+syntax = "proto3";
+package transfer.personage;
+
+import "personage_gender.proto";
+import "personage_stats.proto";
+import "personage_battle_counter.proto";
+import "personage_experience.proto";
+
+message PersonageTransfer {
+  string nickname = 1;
+  int32 level = 2;
+  StatsTransfer stats = 3;
+  BattleCounterTransfer battles = 4;
+  ExperienceTransfer experience = 5;
+}

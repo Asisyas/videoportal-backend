@@ -1,0 +1,15 @@
+syntax = "proto3";
+package transfer.personage;
+
+import public "personage_gender.proto";
+
+message RegistrationTransfer {
+  string nickname = 1;
+  string password = 2;
+  string email = 3;
+  int32 birthdayDate = 4;
+  string realName = 5;
+  string city = 6;
+
+  PersonageGender gender = 7;
+}

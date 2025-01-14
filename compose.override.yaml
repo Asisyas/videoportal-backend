@@ -1,0 +1,29 @@
+# Development environment override
+services:
+  php:
+    build:
+      context: .
+      target: php-dev
+    volumes:
+      - ./:/app
+      # If you develop on Mac or Windows you can remove the vendor/ directory
+      #  from the bind-mount for better performance by enabling the next line:
+      #- /app/vendor
+    env_file:
+      - .env
+      - .env.dev
+    environment:
+      # See https://xdebug.org/docs/all_settings#mode
+      APP_ENV: "dev"
+      XDEBUG_MODE: "debug"
+      PHP_IDE_CONFIG: "serverName=docker"
+    ports:
+      - "9002:9003"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    tty: true
+
+  database:
+    env_file:
+      - .env
+      - .env.dev

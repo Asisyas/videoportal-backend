@@ -1,0 +1,101 @@
+{
+    "name": "micro/micro",
+    "description": "MicroPHP Framework: default plain application",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Stanislau Komar",
+            "email": "kost@micro-php.net"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "micro/kernel-app": "^1.6",
+        "micro/autowire": "^1.6",
+        "micro/plugin-configuration-helper": "^1.6",
+        "micro/plugin-console": "^1.6",
+        "micro/plugin-http-pack": "^1.6",
+        "micro/plugin-logger-monolog": "^1",
+        "vlucas/phpdotenv": "^5.4",
+        "micro/plugin-doctrine": "^1.6.0",
+        "micro/plugin-twig": "^1.6",
+        "micro/plugin-twig-webpack-encore": "^1.6",
+        "micro/plugin-http-roadrunner": "^1.6",
+        "micro/plugin-temporal": "^1.0",
+        "protobuf-php/protobuf": "^0.1.3",
+        "grpc/grpc": "^1.57",
+        "micro/plugin-serializer": "^1.6",
+        "micro/dto": "^1.6",
+        "micro/plugin-dto": "^1.6",
+        "php-ffmpeg/php-ffmpeg": "^1.3"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.29",
+        "phpunit/phpunit": "^10.1",
+        "vimeo/psalm": "^5.15",
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "phpunit/php-code-coverage": "^10.1",
+        "symfony/var-dumper": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App",
+            "Micro\\": "src/Micro",
+            "Transfer\\": "src/Shared/Transfer",
+            "GPBMetadata\\": "src/Shared/GPBMetadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Test\\Unit\\": "tests/Unit"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "scripts": {
+        "transfer-generate": "protoc --proto_path=./transfers --php_out=./src/App/Shared $(find ./transfers -name \"*.proto\")",
+        "transfer-clean": "rm -rf ./src/Shared/Transfer/* ./src/App/Shared/GPBMetadata",
+        "transfer-rebuild": [
+            "@transfer-clean",
+            "@transfer-generate"
+        ],
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "auto-scripts": [
+        ],
+        "front-build": [
+            "yarn install",
+            "yarn build"
+        ],
+        "test-all": [
+            "@test-psalm",
+            "@test-phpstan",
+            "@test-php-cs-try",
+            "@test-unit"
+        ],
+        "test-phpstan": [
+            "php vendor/bin/phpstan"
+        ],
+        "test-psalm": [
+            "php vendor/bin/psalm"
+        ],
+        "test-php-cs-try": [
+            "PHP_CS_FIXER_IGNORE_ENV=1 php vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no"
+        ],
+        "test-php-cs-fix": [
+            "PHP_CS_FIXER_IGNORE_ENV=1 php vendor/bin/php-cs-fixer fix --verbose --using-cache=no"
+        ],
+        "test-unit": [
+            "php vendor/bin/phpunit"
+        ]
+    }
+}

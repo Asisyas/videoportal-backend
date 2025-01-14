@@ -1,0 +1,20 @@
+services:
+  php:
+    image: php-${IMAGES_PREFIX:-prod}
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
+      STABILITY: ${STABILITY:-stable}
+      MICRO_VERSION: ${MICRO_VERSION:-}
+    env_file:
+      - .env
+    volumes:
+      - php_data:/app
+    ports:
+      - target: ${HTTP_PORT:-80}
+        published: ${HTTP_PORT:-80}
+        protocol: tcp
+
+volumes:
+  php_data:
+

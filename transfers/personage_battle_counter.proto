@@ -1,0 +1,8 @@
+syntax = "proto3";
+package transfer.personage;
+
+message BattleCounterTransfer {
+  int32 wins = 1;
+  int32 defeats = 2;
+  int32 draws = 3;
+}
