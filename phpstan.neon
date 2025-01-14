@@ -1,7 +1,8 @@
 parameters:
 	level: 7
 	paths:
-		- src
+		- src/App
+		- src/Micro
 #	checkMissingIterableValueType: false
 #	reportUnmatchedIgnoredErrors: false
 #	checkGenericClassInNonGenericObjectType: false

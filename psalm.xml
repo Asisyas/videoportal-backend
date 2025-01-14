@@ -11,6 +11,10 @@
 >
     <projectFiles>
         <directory name="src" />
+        <ignoreFiles>
+            <directory name="src/Shared/GPBMetadata"/>
+            <directory name="src/Shared/Transfer"/>
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
